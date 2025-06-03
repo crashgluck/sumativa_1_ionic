@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Historial de Entrenamientos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="entrenamientos.length > 0; else sinEntrenamientos">
+    <ion-item *ngFor="let entrenamiento of entrenamientos; let i = index">
+      <ion-label>
+        <h2>Entrenamiento {{ i + 1 }}</h2>
+        <div *ngIf="entrenamiento.ejercicios?.length > 0">
+          <ul>
+            <li *ngFor="let ej of entrenamiento.ejercicios">
+              {{ ej.nombre }} - {{ ej.repeticiones }} reps - {{ ej.peso || 'sin peso' }}
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="!entrenamiento.ejercicios?.length">
+          <em>Sin ejercicios registrados</em>
+        </div>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #sinEntrenamientos>
+    <ion-item>
+      <ion-label>No hay entrenamientos registrados aún.</ion-label>
+    </ion-item>
+  </ng-template>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registrar Ejercicios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Registrar Ejercicios</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <mat-card>
+    <mat-card-title>Ejercicios Realizados</mat-card-title>
+
+    <!-- Formulario único para ingresar un ejercicio -->
+    <app-ejercicio-form [formGroup]="ejercicioForm"></app-ejercicio-form>
+
+    <button (click)="agregarEjercicio()" mat-raised-button color="primary">
+      + Agregar Ejercicio
+    </button>
+
+    <!-- Mostrar lista de ejercicios agregados -->
+    <div *ngIf="listaEjercicios.length > 0" class="listado-ejercicios">
+      <h3>Ejercicios agregados:</h3>
+      <ul>
+        <li *ngFor="let ej of listaEjercicios">
+          {{ ej.nombre }} - Repeticiones: {{ ej.repeticiones }} - Peso: {{ ej.peso || 'N/A' }}
+        </li>
+      </ul>
+    </div>
+
+    <button (click)="irAFinalizar()" mat-raised-button color="accent" [disabled]="listaEjercicios.length === 0">
+      Finalizar
+    </button>
+
+  </mat-card>
+
+</ion-content>
