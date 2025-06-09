@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import material angular
@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 // importo router
 import { Router } from '@angular/router';
+import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
 
 
 @Component({
@@ -20,10 +21,11 @@ import { Router } from '@angular/router';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,IonHeader, IonToolbar, IonTitle, IonContent
   ],
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss']
+  styleUrls: ['./login.page.scss'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class LoginPage {
   loginForm: FormGroup;

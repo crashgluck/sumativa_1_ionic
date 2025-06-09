@@ -1,31 +1,62 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Historial de Entrenamientos</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content color="mytheme">
 
-<ion-content>
-  <ion-list *ngIf="entrenamientos.length > 0; else sinEntrenamientos">
-    <ion-item *ngFor="let entrenamiento of entrenamientos; let i = index">
-      <ion-label>
-        <h2>Entrenamiento {{ i + 1 }}</h2>
-        <div *ngIf="entrenamiento.ejercicios?.length > 0">
-          <ul>
-            <li *ngFor="let ej of entrenamiento.ejercicios">
-              {{ ej.nombre }} - {{ ej.repeticiones }} reps - {{ ej.peso || 'sin peso' }}
-            </li>
-          </ul>
-        </div>
-        <div *ngIf="!entrenamiento.ejercicios?.length">
-          <em>Sin ejercicios registrados</em>
-        </div>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <ion-header [translucent]="true">
+    
+    <ion-toolbar>
+      <ion-title>Historial</ion-title>
+      <ion-button slot="start" color="mytheme">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-button>
+    </ion-toolbar>
+  </ion-header>
+  <ion-header collapse="condense">
+    <ion-toolbar color="mytheme">
+      <ion-title size="large">Historial</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-  <ng-template #sinEntrenamientos>
-    <ion-item>
-      <ion-label>No hay entrenamientos registrados aún.</ion-label>
-    </ion-item>
-  </ng-template>
+  
+<div class="lottie-wrapper">
+      <lottie-player class="lottie-player" 
+      src="../../../assets/animations/gym.json"
+      background="transparent"
+      speed="1"
+      time="1"
+      loop autoplay
+      >
+    </lottie-player>
+  </div>
+<div class="ion-padding ion-margin">
+  <ng-container *ngIf="entrenamientos.length > 0; else sinEntrenamientos">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let entrenamiento of entrenamientos; let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ i + 1 }}) {{ entrenamiento.fecha | date:'mediumDate' }} ({{ entrenamiento.rutina }})
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div *ngIf="entrenamiento.ejercicios?.length > 0; else sinEjercicios">
+        <mat-list>
+          <mat-list-item *ngFor="let ej of entrenamiento.ejercicios">
+            {{ ej.nombre }} - {{ ej.repeticiones }} reps - {{ ej.peso || 'sin peso' }}
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+      <ng-template #sinEjercicios>
+        <p style="margin-left: 16px;"><em>Sin ejercicios registrados</em></p>
+      </ng-template>
+    </mat-expansion-panel>
+  </mat-accordion>
+</ng-container>
+</div>
+
+<ng-template #sinEntrenamientos>
+  <mat-card class="mt-4">
+    <mat-card-content>No hay entrenamientos registrados aún.</mat-card-content>
+  </mat-card>
+</ng-template>
+
+
 </ion-content>

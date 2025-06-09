@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { EjercicioService } from 'src/app/services/ejercicio.service';
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './finalizar-entrenamiento.page.html',
   styleUrls: ['./finalizar-entrenamiento.page.scss'],
   standalone: true,
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule,IonButton]
 })
 export class FinalizarEntrenamientoPage implements OnInit {

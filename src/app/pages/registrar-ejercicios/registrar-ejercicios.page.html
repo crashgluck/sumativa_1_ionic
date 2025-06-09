@@ -1,18 +1,38 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Registrar Ejercicios</ion-title>
+    <ion-button slot="start" color="mytheme">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-button>
   </ion-toolbar>
+  
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" color="mytheme">
   <ion-header collapse="condense">
-    <ion-toolbar>
+    <ion-toolbar color="mytheme">
       <ion-title size="large">Registrar Ejercicios</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <mat-card>
-    <mat-card-title>Ejercicios Realizados</mat-card-title>
+  
+<div class="lottie-wrapper">
+      <lottie-player class="lottie-player" 
+      src="../../../assets/animations/gym.json"
+      background="transparent"
+      speed="1"
+      time="1"
+      loop autoplay
+      >
+    </lottie-player>
+  </div>
+
+
+  <mat-card class="ion-padding ion-margin">
+    <mat-card-header>
+      <mat-card-title class="ion-padding">Ejercicios Realizados</mat-card-title>
+      <mat-card-subtitle class="ion-padding">Registra los ejercicios realizados.</mat-card-subtitle>
+    </mat-card-header>
 
     <!-- Formulario único para ingresar un ejercicio -->
     <app-ejercicio-form [formGroup]="ejercicioForm"></app-ejercicio-form>

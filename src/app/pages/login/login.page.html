@@ -1,6 +1,35 @@
+<ion-content color="mytheme">
+  <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Iniciar Sesión
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<div class="lottie-wrapper">
+      <lottie-player class="lottie-player" 
+      src="../../../assets/animations/gym.json"
+      background="transparent"
+      speed="1"
+      time="1"
+      loop autoplay
+      >
+    </lottie-player>
+  </div>
+
 <mat-card>
-  <mat-card-title>Iniciar Sesión</mat-card-title>
-  <mat-card-content>
+  
+  <mat-card-content color="mytheme">
+    <mat-card-header>
+      <mat-card-title>
+        Iniciar sesión
+      </mat-card-title>
+      <mat-card-subtitle>
+
+      </mat-card-subtitle>
+    </mat-card-header>
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <mat-form-field appearance="fill">
         <mat-label>Correo</mat-label>
@@ -18,3 +47,7 @@
     </form>
   </mat-card-content>
 </mat-card>
+
+
+
+</ion-content>

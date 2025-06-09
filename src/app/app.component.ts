@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
-import { MaterialModule } from './material.module';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  imports: [IonApp, IonRouterOutlet, MaterialModule],
+  imports: [IonApp, IonRouterOutlet,SideMenuComponent],
 })
 export class AppComponent {
   constructor() {}

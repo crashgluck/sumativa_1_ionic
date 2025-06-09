@@ -1,18 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>nuevo-entrenamiento</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content [fullscreen]="true" color="mytheme">
+  <ion-header [translucent]="true">
+    
     <ion-toolbar>
-      <ion-title size="large">nuevo-entrenamiento</ion-title>
+      <ion-title>Nuevo Entrenamiento</ion-title>
+      <ion-button slot="start" color="mytheme">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-button>
+    </ion-toolbar>
+  </ion-header>
+  <ion-header collapse="condense">
+    <ion-toolbar color="mytheme">
+      <ion-title size="large">Nuevo Entrenamiento</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <mat-card>
-  <mat-card-title>Nuevo Entrenamiento</mat-card-title>
+  
+<div class="lottie-wrapper">
+      <lottie-player class="lottie-player" 
+      src="../../../assets/animations/gym.json"
+      background="transparent"
+      speed="1"
+      time="1"
+      loop autoplay
+      >
+    </lottie-player>
+  </div>
+
+
+  <mat-card class="ion-padding ion-margin">
+
+  <mat-card-header>
+    <mat-card-title class="ion-padding">Registrar</mat-card-title>
+    <mat-card-subtitle class="ion-padding">Crea nueva rutina para comenzar a registrar tus ejercicios entrenados.</mat-card-subtitle>
+  </mat-card-header>
+
   <form [formGroup]="entrenamientoForm">
     <mat-form-field appearance="fill">
       <mat-label>Fecha</mat-label>

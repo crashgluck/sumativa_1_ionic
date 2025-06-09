@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar,IonMenuButton, IonButton } from '@ionic/angular/standalone';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { EjercicioService } from 'src/app/services/ejercicio.service';
@@ -13,8 +13,10 @@ import { Router } from '@angular/router';
   templateUrl: './registrar-ejercicios.page.html',
   styleUrls: ['./registrar-ejercicios.page.scss'],
   standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
-    MatCardModule,
+    MatCardModule
+    ,IonMenuButton, IonButton,
     MatButtonModule,
     IonContent,
     IonHeader,

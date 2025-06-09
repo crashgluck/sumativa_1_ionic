@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar,IonMenuButton, IonButton } from '@ionic/angular/standalone';
 // Angular Material modules
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,7 +17,10 @@ import { EjercicioService } from 'src/app/services/ejercicio.service';
   templateUrl: './nuevo-entrenamiento.page.html',
   styleUrls: ['./nuevo-entrenamiento.page.scss'],
   standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
+    IonButton,
+    IonMenuButton,
     IonContent, 
     IonHeader, 
     IonTitle, 
