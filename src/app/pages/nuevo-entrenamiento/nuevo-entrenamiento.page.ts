@@ -11,6 +11,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 import { EjercicioService } from 'src/app/services/ejercicio.service';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-nuevo-entrenamiento',
@@ -37,6 +38,8 @@ import { EjercicioService } from 'src/app/services/ejercicio.service';
 })
 export class NuevoEntrenamientoPage implements OnInit {
 
+  fotoBase64: string | null = null;
+
   entrenamientoForm!: FormGroup;
 
   constructor(private fb: FormBuilder,private router:Router, private ejercicioService:EjercicioService) {}
@@ -51,16 +54,42 @@ export class NuevoEntrenamientoPage implements OnInit {
   }
 
   continuar() {
-    if (this.entrenamientoForm.valid) {
-      this.ejercicioService.setRutinaActual(this.entrenamientoForm.value);
-      this.ejercicioService.limpiarEjercicios();  // empieza con lista vacía
-      console.log("Entrenamiento Creado:", this.ejercicioService.getRutinaActual());
-      this.router.navigate(['/registrar-ejercicios']);
-    } else {
-      this.entrenamientoForm.markAllAsTouched();
+  if (this.entrenamientoForm.valid) {
+    const datos = this.entrenamientoForm.value;
+    if (this.fotoBase64) {
+      datos.foto = this.fotoBase64;
     }
 
+    this.ejercicioService.setRutinaActual(datos);
+    this.ejercicioService.limpiarEjercicios();
+    this.router.navigate(['/registrar-ejercicios']);
+  } else {
+    this.entrenamientoForm.markAllAsTouched();
   }
+}
+
+
+ async tomarFoto() {
+  const image = await Camera.getPhoto({
+    quality: 70,
+    allowEditing: false,
+    resultType: CameraResultType.Base64,
+    source: CameraSource.Camera
+  });
+
+  this.fotoBase64 = 'data:image/jpeg;base64,' + image.base64String;
+
+  // Obtenemos los datos actuales del formulario
+  const datos = this.entrenamientoForm.value;
+
+  // Incluimos la foto en los datos
+  const rutinaConFoto = { ...datos, foto: this.fotoBase64 };
+
+  this.ejercicioService.setRutinaActual(rutinaConFoto);
+}
+
+
+
 }
 
 

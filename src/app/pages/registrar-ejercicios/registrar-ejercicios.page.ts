@@ -7,6 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { EjercicioService } from 'src/app/services/ejercicio.service';
 import { EjercicioFormComponent } from 'src/app/components/ejercicio-form/ejercicio-form.component';
 import { Router } from '@angular/router';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-registrar-ejercicios',

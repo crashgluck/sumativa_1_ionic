@@ -15,24 +15,28 @@
   <div class="ion-padding">
     <h2 style="color: #00bcd4;">Resumen de entrenamiento de hoy</h2>
   </div>
+<ion-card class="summary-card">
+  <ion-card-header>
+    <ion-card-title>{{ rutina?.nombre || 'Rutina sin nombre' }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ng-container *ngIf="rutina?.foto">
+      <img [src]="rutina.foto" alt="Foto Entrenamiento" style="width: 100%; border-radius: 8px;" />
+    </ng-container>
 
-  <ion-card class="summary-card">
-    <ion-card-header>
-      <ion-card-title>{{ rutina?.nombre || 'Rutina sin nombre' }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ng-container *ngIf="rutina?.ejercicios?.length > 0; else noData">
-        <ion-list lines="none">
-          <ion-item *ngFor="let ej of rutina.ejercicios">
-            <ion-label>
-              <h3>{{ ej.nombre }}</h3>
-              <p>Reps: {{ ej.repeticiones }} - Peso: {{ ej.peso || 'N/A' }}</p>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ng-container>
-    </ion-card-content>
-  </ion-card>
+    <ng-container *ngIf="rutina?.ejercicios?.length > 0; else noData">
+      <ion-list lines="none">
+        <ion-item *ngFor="let ej of rutina.ejercicios">
+          <ion-label>
+            <h3>{{ ej.nombre }}</h3>
+            <p>Reps: {{ ej.repeticiones }} - Peso: {{ ej.peso || 'N/A' }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+  </ion-card-content>
+</ion-card>
+
 
   <ion-button color="success" expand="block" class="ion-margin" (click)="finalizar()">
     Finalizar registro

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <mat-card>
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Correo</mat-label>
+        <input matInput type="email" formControlName="correo" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" formControlName="contraseña" />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">
+        Registrarse
+      </button>
+    </mat-card>
+  </form>
+</ion-content>

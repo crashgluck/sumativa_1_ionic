@@ -53,6 +53,19 @@
       <textarea matInput formControlName="notas"></textarea>
     </mat-form-field>
 
+   
+  <div>
+    <button mat-raised-button color="primary" (click)="tomarFoto()">
+    📷 Tomar Foto (opcional)
+  </button>
+
+  <div *ngIf="fotoBase64" class="foto-preview ion-padding-top">
+    <img [src]="fotoBase64" alt="Foto tomada" style="width: 100%; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);" />
+  </div>
+  </div>
+
+
+
     <button mat-raised-button color="primary" (click)="continuar()">
       Continuar
     </button>

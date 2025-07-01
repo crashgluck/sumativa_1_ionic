@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-
+import { DatabaseService } from 'src/app/services/database.service';
 // importo router
 import { Router } from '@angular/router';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
@@ -30,19 +30,23 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/stan
 export class LoginPage {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router:Router) {
+  constructor(private fb: FormBuilder, private router:Router,private db: DatabaseService) {
     this.loginForm = this.fb.group({
       correo: ['', [Validators.required, Validators.email]],
       contraseña: ['', Validators.required]
     });
   }
 
-  onLogin() {
-    if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
-      // Lógica de autenticación
-      // Redirige al Home
-      this.router.navigate(['/nuevo-entrenamiento']);
-    }
+  async onLogin() {
+  const { correo, contraseña } = this.loginForm.value;
+  const ok = await this.db.loginUsuario(correo, contraseña);
+  if (ok) this.router.navigate(['/nuevo-entrenamiento']);
+  else alert('Usuario incorrecto');
+}
+
+irRegistrar(){
+    console.log("presionaste catalogo en home")
+    this.router.navigate(['/register']);
   }
+
 }

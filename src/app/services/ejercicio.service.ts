@@ -26,9 +26,10 @@ export class EjercicioService {
     this.ejercicios = [];
   }
 
-  setRutinaActual(rutina: any) {
-    this.rutinaActual = { ...rutina, ejercicios: [] };
-  }
+  setRutinaActual(rutina: any, fotoBase64?: string) {
+  this.rutinaActual = { ...rutina, ejercicios: [], foto: fotoBase64 || null };
+}
+
 
   getRutinaActual() {
     return this.rutinaActual;

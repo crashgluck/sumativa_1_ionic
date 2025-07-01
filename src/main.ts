@@ -4,9 +4,13 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalo
 import '@lottiefiles/lottie-player'
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
+import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
+import { provideHttpClient } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
   providers: [
+    SQLite,
+    provideHttpClient(),
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),

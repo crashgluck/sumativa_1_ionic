@@ -4,6 +4,8 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { EjercicioService } from 'src/app/services/ejercicio.service';
 import { IonButton } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+import { DatabaseService } from 'src/app/services/database.service';
+
 
 @Component({
   selector: 'app-finalizar-entrenamiento',
@@ -18,22 +20,33 @@ export class FinalizarEntrenamientoPage implements OnInit {
   listaEjercicios: any[] = [];
   rutina: any = null;
 
-  constructor(private ejercicioService: EjercicioService, private router:Router) {}
+  constructor(private ejercicioService: EjercicioService, private router:Router, private db: DatabaseService) {}
 
   ngOnInit() {
     this.rutina = this.ejercicioService.getRutinaActual();
     this.listaEjercicios = this.rutina?.ejercicios || [];
+    // Aquí puedes validar que tenga foto
+    console.log('Foto en rutina:', this.rutina?.foto);
     
   }
 
-  finalizar() {
+  async finalizar() {
+  try {
+    const rutina = this.ejercicioService.getRutinaActual();
+    const ejercicios = this.ejercicioService.getEjercicios(); // <- asegúrate de usar este método
+
+    const idEntrenamiento = await this.db.guardarEntrenamiento(rutina);
+
+    for (const ej of ejercicios) {
+      await this.db.guardarEjercicio(idEntrenamiento, ej);
+    }
+
     this.ejercicioService.finalizarRutina();
-    console.log('Entrenamientos guardados:', this.ejercicioService.getEntrenamientos());
-    console.log('Finalizando con ejercicios:', this.listaEjercicios);
-    // Confirmamos que se guardó en localStorage:
-    console.log('JSON:', localStorage.getItem('entrenamientos'));
-    // Aquí podrías enviar a backend o limpiar la lista, etc.
-     this.router.navigate(['/historial']);
+    console.log('Entrenamiento guardado en SQLite');
+    this.router.navigate(['/historial']); // o a donde quieras ir
+  } catch (error) {
+    console.error('Error al guardar entrenamiento:', error);
   }
+}
   
 }

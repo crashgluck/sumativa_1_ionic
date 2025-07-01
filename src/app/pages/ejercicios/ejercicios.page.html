@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ejercicios</ion-title>
+    <ion-button slot="start" color="mytheme">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="ejercicios.length > 0; else noData">
+    <ion-item *ngFor="let ejercicio of ejercicios">
+      <ion-label>
+        <h2>{{ ejercicio.translations[0]?.name || 'Sin nombre' }}</h2>
+        <p><strong>Categoría:</strong> {{ ejercicio.category?.name || 'Desconocida' }}</p>
+        <p><strong>Equipamiento:</strong>
+  <ng-container *ngIf="ejercicio.equipment.length > 0; else sinEquipo">
+    <span *ngFor="let eq of ejercicio.equipment; let last = last">
+      {{ eq.name }}<span *ngIf="!last">, </span>
+    </span>
+  </ng-container>
+  <ng-template #sinEquipo>Sin equipamiento</ng-template>
+</p>
+
+        
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #noData>
+    <p>No se encontraron ejercicios.</p>
+  </ng-template>
+</ion-content>
